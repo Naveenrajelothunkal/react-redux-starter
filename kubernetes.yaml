@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: home
-        image: gcr.io/root-sanctuary-274210/home
+        image: gcr.io/root-sanctuary-274210/home:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
@@ -79,7 +79,7 @@ spec:
     spec:
       containers:
       - name: product
-        image: gcr.io/root-sanctuary-274210/product
+        image: gcr.io/root-sanctuary-274210/product:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
