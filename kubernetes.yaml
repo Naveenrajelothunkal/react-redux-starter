@@ -1,0 +1,86 @@
+##################################################################################################
+# product service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: home
+  labels:
+    app: home
+    service: home
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: home
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-v1
+  labels:
+    app: home
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: home
+        version: v1
+    spec:
+      containers:
+      - name: home
+        image: gcr.io/root-sanctuary-274210/home
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+---    
+##################################################################################################
+# product service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: product
+  labels:
+    app: product
+    service: product
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: product
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-v1
+  labels:
+    app: product
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: product
+        version: v1
+    spec:
+      containers:
+      - name: product
+        image: gcr.io/root-sanctuary-274210/product
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+---
